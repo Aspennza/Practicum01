@@ -1,5 +1,11 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.nio.file.StandardOpenOption.CREATE;
 
 //Need to write javadoc later!
 
@@ -9,6 +15,10 @@ public class PersonGenerator
     {
         ArrayList<String> people = new ArrayList<>();
         Scanner in = new Scanner(System.in);
+
+        File workingDirectory = new File(System.getProperty("user.dir"));
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestData.txt");
+
         boolean done = false;
 
         //here go scanner, variables, arraylist, etc.
@@ -48,7 +58,25 @@ public class PersonGenerator
         //open a try catch around the writer
         //create the writer and all the filler code for that
 
+        try
+        {
+            OutputStream out =
+                    new BufferedOutputStream(Files.newOutputStream(file, CREATE));
+            BufferedWriter writer =
+                    new BufferedWriter(new OutputStreamWriter(out));
 
+            for(String rec : people)
+            {
+                writer.write(rec, 0, rec.length());
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("Data file written!");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 }

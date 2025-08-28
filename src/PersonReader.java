@@ -79,7 +79,7 @@ public class PersonReader
                         lastName = fields[2].trim();
                         title = fields[3].trim();
                         YOB = Integer.parseInt(fields[4].trim());
-                        System.out.printf("%-8s%-14s%-13s%-8s%5d", ID, firstName, lastName, title, YOB);
+                        System.out.printf("\n%-8s%-14s%-13s%-8s%5d", ID, firstName, lastName, title, YOB);
                     }
                     else
                     {

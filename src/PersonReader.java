@@ -28,11 +28,51 @@ public class PersonReader
         String rec = "";
         ArrayList<String> records = new ArrayList<>();
 
-        final int ARRAY_LENGTH = 5;
+        final int ARRAYLIST_LENGTH = 5;
         String ID = "";
         String firstName = "";
         String lastName = "";
         String title = "";
         int YOB = 0;
+
+        try
+        {
+            File workingDirectory = new File(System.getProperty("user.dir"));
+            chooser.setCurrentDirectory(workingDirectory);
+
+            if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+            {
+                selectedFile = chooser.getSelectedFile();
+                Path file = selectedFile.toPath();
+
+                InputStream in =
+                        new BufferedInputStream(Files.newInputStream(file, CREATE));
+                BufferedReader reader =
+                        new BufferedReader(new InputStreamReader(in));
+
+                int line = 0;
+                while(reader.ready())
+                {
+                    rec = reader.readLine();
+                    records.add(rec);
+                    line++;
+
+                    System.out.printf("\nLine %4d %-60s ", line, rec);
+                }
+                reader.close();
+                System.out.println("\n\nThe data file has been read.");
+            }
+
+        }
+        catch (FileNotFoundException e)
+        {
+            System.out.println("The file couldn't be found.");
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            System.out.println("An exception occurred.");
+            e.printStackTrace();
+        }
     }
 }

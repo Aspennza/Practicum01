@@ -1,8 +1,11 @@
-import java.io.File;
+import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class ProductWriter
 {
@@ -33,5 +36,30 @@ public class ProductWriter
 
             done = SafeInput.getYNConfirm(in, "Have you finished entering products?");
         }while(!done);
+
+        for (String p : products)
+        {
+            System.out.println(p);
+        }
+
+        try
+        {
+            OutputStream out =
+                    new BufferedOutputStream(Files.newOutputStream(file, CREATE));
+            BufferedWriter writer =
+                    new BufferedWriter(new OutputStreamWriter(out));
+
+            for(String rec : products)
+            {
+                writer.write(rec, 0, rec.length());
+                writer.newLine();
+            }
+            writer.close();
+            System.out.println("\nData file written!");
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
     }
 }

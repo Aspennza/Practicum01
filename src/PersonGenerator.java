@@ -71,7 +71,7 @@ public class PersonGenerator
                 writer.newLine();
             }
             writer.close();
-            System.out.println("Data file written!");
+            System.out.println("\nData file written!");
         }
         catch (IOException e)
         {

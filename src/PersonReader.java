@@ -28,7 +28,7 @@ public class PersonReader
         String rec = "";
         ArrayList<String> records = new ArrayList<>();
 
-        final int ARRAYLIST_LENGTH = 5;
+        final int FIELDS_LENGTH = 5;
         String ID = "";
         String firstName = "";
         String lastName = "";
@@ -37,6 +37,8 @@ public class PersonReader
 
         try
         {
+            System.out.println("Please select a file containing personal records to read to the console.");
+
             File workingDirectory = new File(System.getProperty("user.dir"));
             chooser.setCurrentDirectory(workingDirectory);
 
@@ -60,7 +62,37 @@ public class PersonReader
                     System.out.printf("\nLine %4d %-60s ", line, rec);
                 }
                 reader.close();
-                System.out.println("\n\nThe data file has been read.");
+                System.out.println("\n\nThe data file has been read.\n");
+
+                System.out.println("ID#     Firstname     Lastname     Title     YOB");
+                System.out.println("================================================");
+
+                String[] fields;
+                for(String r : records)
+                {
+                    fields = r.split(",");
+
+                    if(fields.length == FIELDS_LENGTH)
+                    {
+                        ID = fields[0].trim();
+                        firstName = fields[1].trim();
+                        lastName = fields[2].trim();
+                        title = fields[3].trim();
+                        YOB = Integer.parseInt(fields[4].trim());
+                        System.out.printf("%-8s%-14s%-13s%-8s%5d", ID, firstName, lastName, title, YOB);
+                    }
+                    else
+                    {
+                        System.out.println("One of the records in your file may be corrupted. Please select a different file.");
+                        System.out.println(r);
+                    }
+                }
+            }
+            else
+            {
+                System.out.println("No file was selected.");
+                System.out.println("Please run this program again to select a file.");
+                System.exit(0);
             }
 
         }

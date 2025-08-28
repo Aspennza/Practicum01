@@ -22,6 +22,16 @@ public class ProductWriter
         String description = "";
         double cost = 0.00;
 
+        do {
+            ID = SafeInput.getNonZeroLenString(in, "Please enter the ID for your product [6 digits]");
+            name = SafeInput.getNonZeroLenString(in, "Please enter the name of your product");
+            description = SafeInput.getNonZeroLenString(in, "Please enter a short description of your product");
+            cost = SafeInput.getDouble(in, "Please enter the cost of your product [non-negative]");
 
+            productRec = ID + ", " + name + ", " + description + ", " + cost;
+            products.add(productRec);
+
+            done = SafeInput.getYNConfirm(in, "Have you finished entering products?");
+        }while(!done);
     }
 }

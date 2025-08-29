@@ -63,7 +63,7 @@ public class PersonReader
             File workingDirectory = new File(System.getProperty("user.dir"));
             chooser.setCurrentDirectory(workingDirectory);
 
-            //This algorithm prompts the user to select a file, reads the file to the records ArrayList, splits each record in the ArrayList into five fields, then prints them to the console
+            //This algorithm identifies whether the user has selected a file, reads the file to the records ArrayList, splits each record in the ArrayList into five fields, then prints them to the console
             if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
             {
                 selectedFile = chooser.getSelectedFile();
@@ -100,7 +100,7 @@ public class PersonReader
                 {
                     fields = r.split(",");
 
-                    //This algorithm trims each value from the fields array, then puts it into a separate variable for printing
+                    //This algorithm checks if the number of values per record is as expected, trims each value from the fields array, then puts it into a separate variable for printing
                     if(fields.length == FIELDS_LENGTH)
                     {
                         ID = fields[0].trim();

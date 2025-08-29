@@ -7,31 +7,66 @@ import java.util.Scanner;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-//Need to write javadoc later!
-
 public class PersonGenerator
 {
     public static void main(String[] args)
     {
+        /**
+         * This ArrayList holds a list of all person records input by the user
+         */
         ArrayList<String> people = new ArrayList<>();
+        /**
+         * This Scanner takes all user input
+         */
         Scanner in = new Scanner(System.in);
 
+        /**
+         * This file holds the current directory
+         */
         File workingDirectory = new File(System.getProperty("user.dir"));
+        /**
+         * This Path holds the current directory concatenated with the location of the text file that will be created
+         */
         Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestData.txt");
 
+        /**
+         * This boolean holds the true/false value that determines if the user continues or stops entering records
+         */
         boolean done = false;
 
-        //here go scanner, variables, arraylist, etc.
+        /**
+         * This String holds the finished comma-separated list of each person's ID, firstName, lastName, title, and YOB
+         */
         String personRec = "";
+
+        /**
+         * This String holds the 6-digit ID of each person record input by the user
+         */
         String ID = "";
+
+        /**
+         * This String holds the first name of each person input by the user
+         */
         String firstName = "";
+
+        /**
+         * This String holds the last name of each person input by the user
+         */
         String lastName = "";
+
+        /**
+         * This String holds the title (Mr., Ms., Esq., etc.) of each person input by the user
+         */
         String title = "";
+
+        /**
+         * This int holds the birth year of each person input by the user
+         */
         int YOB = 0;
 
-
-        //open a loop I think?
-
+        /**
+         * This algorithm prompts the user to enter an ID, firstName, lastName, title, and YOB, concatenates these values into a record, adds the record to the people ArrayList, then determines if the user is finished entering records
+         */
         do {
             ID = SafeInput.getNonZeroLenString(in, "Please enter the ID for your record [6 digits]");
             firstName = SafeInput.getNonZeroLenString(in, "Please enter the first name for your record");
@@ -45,19 +80,17 @@ public class PersonGenerator
             done = SafeInput.getYNConfirm(in, "Have you finished entering records?");
         }while(!done);
 
+        /**
+         * This algorithm prints each record in the people ArrayList to the console
+         */
         for (String p : people)
         {
             System.out.println(p);
         }
-        //prompt the user to enter data
-        //put data into arraylist
 
-        //ask the user if they want to enter more records
-
-        //create writer
-        //open a try catch around the writer
-        //create the writer and all the filler code for that
-
+        /**
+         * This algorithm writes each record in the people ArrayList into the PersonTestData.txt file indicated above, then checks for exceptions
+         */
         try
         {
             OutputStream out =

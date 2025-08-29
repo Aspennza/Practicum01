@@ -86,8 +86,8 @@ public class ProductReader
                 reader.close();
                 System.out.println("\n\nThe data file has been read.\n");
 
-                System.out.println("ID#     Name          Description         Cost");
-                System.out.println("===================================================");
+                System.out.println("ID#     Name          Description              Cost");
+                System.out.println("=========================================================");
 
                 //This array holds the values from each record after they have been split
                 String[] fields;
@@ -104,7 +104,7 @@ public class ProductReader
                         name = fields[1].trim();
                         description = fields[2].trim();
                         cost = Double.parseDouble(fields[3].trim());
-                        System.out.printf("\n%-8s%-14s%-20s%8f", ID, name, description, cost);
+                        System.out.printf("\n%-8s%-14s%-25s%8f", ID, name, description, cost);
                     }
                     else
                     {
